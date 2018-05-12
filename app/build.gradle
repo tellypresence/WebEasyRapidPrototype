@@ -32,6 +32,8 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
+    implementation project(":webg")
+
     implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation "com.android.support:appcompat-v7:${rootProject.supportLibraryVersion}"
     implementation "com.android.support.constraint:constraint-layout:${rootProject.constraintLayoutVer}"
@@ -53,9 +55,6 @@ dependencies {
     kapt "android.arch.persistence.room:compiler:${rootProject.aacRoomVer}"
     implementation "android.arch.persistence.room:rxjava2:${rootProject.aacRoomVer}"
     implementation "android.arch.persistence.room:guava:${rootProject.aacRoomVer}"
-    // AAC WorkManager
-    implementation "android.arch.work:work-runtime-ktx:${rootProject.aacWorkMgrVer}"
-    implementation "android.arch.work:work-firebase:${rootProject.aacWorkMgrVer}"
 
     testImplementation "junit:junit:${rootProject.junitVer}"
     androidTestImplementation "com.android.support.test:runner:${rootProject.testRunnerVer}"
@@ -65,8 +64,6 @@ dependencies {
     testImplementation "android.arch.core:core-testing:${rootProject.aacLifecycleVer}"
     // AAC Navigation
     androidTestImplementation "android.arch.navigation:navigation-testing-ktx:${rootProject.aacNavigationVer}"
-    // AAC WorkManager
-    androidTestImplementation "android.arch.work:work-testing:${rootProject.aacWorkMgrVer}"
     // AAC Room
     testImplementation "android.arch.persistence.room:testing:${rootProject.aacRoomVer}"
 }
