@@ -38,6 +38,9 @@ dependencies {
 
     implementation "org.jsoup:jsoup:${rootProject.jsoupVersion}"
 
+    implementation "com.squareup.moshi:moshi:${rootProject.moshiVer}"
+    implementation "com.squareup.moshi:moshi-kotlin:${rootProject.moshiVer}"
+
     testImplementation "junit:junit:${rootProject.junitVer}"
     androidTestImplementation "com.android.support.test:runner:${rootProject.testRunnerVer}"
     androidTestImplementation "com.android.support.test.espresso:espresso-core:${rootProject.espressoVer}"

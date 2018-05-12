@@ -31,6 +31,7 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
+    implementation project(":infra")
     implementation project(":wenet")
 
     implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
@@ -44,6 +45,9 @@ dependencies {
     // AAC WorkManager
     implementation "android.arch.work:work-runtime-ktx:${rootProject.aacWorkMgrVer}"
     implementation "android.arch.work:work-firebase:${rootProject.aacWorkMgrVer}"
+
+    implementation "com.squareup.moshi:moshi:${rootProject.moshiVer}"
+    implementation "com.squareup.moshi:moshi-kotlin:${rootProject.moshiVer}"
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
