@@ -25,3 +25,19 @@ allprojects {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
+// Define versions in a single place
+// Ref: https://github.com/googlesamples/android-architecture/blob/dev-todo-mvvm-rxjava/todoapp/build.gradle
+ext {
+    // Sdk and tools
+    // Alter system var names to suppress lint warnings
+    minSdkVer = 19
+    targetSdkVer = 27
+    compileSdkVer = 27
+
+    // App dependencies
+    supportLibraryVersion = '27.1.1'
+
+    constraintLayoutVer = '1.1.0'
+    androidArchLifecycleExtVer = '1.1.1'
+}
