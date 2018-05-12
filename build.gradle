@@ -42,7 +42,8 @@ ext {
     compileSdkVer = 27
 
     // App dependencies
-    supportLibraryVersion = '27.1.1'
+    // Deliberately held back to avoid conflicts w/AAC deps
+    supportLibraryVersion = '27.1.0'
 
     constraintLayoutVer = '1.1.0'
     androidArchLifecycleExtVer = '1.1.1'
