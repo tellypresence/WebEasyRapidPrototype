@@ -11,11 +11,15 @@ import android.webkit.WebViewClient
 import com.tellypresence.infra.application.WeBaseApp
 import com.tellypresence.wenet.R
 import com.tellypresence.wenet.webview.pub.INetContract
+import com.tellypresence.wenet.webview.pub.domain.WebEasyItem
 import org.jsoup.Jsoup
 
 /**
  * Jsoup can't parse dynamic web pages without special help; for this purpose employ a
  * "headless" webView to pre-parse content
+ *
+ * Known issues
+ * May not work on Kitkat 4.4.2 Samsung Galaxy 4
  *
  * Refs
  *      https://stackoverflow.com/questions/39140121/android-parse-js-generated-urls-with-jsoup
@@ -25,6 +29,8 @@ import org.jsoup.Jsoup
 class WeWebViewTest(context: Context) : WebView(context), INetContract.INetContractPrivate {
 
     private val TAG = WeWebViewTest::class.java.simpleName
+
+    private val resultItems = mutableListOf<WebEasyItem>()
 
     override fun loadWebpage() {
         Log.e(TAG, "loadWebpage()")
@@ -38,22 +44,25 @@ class WeWebViewTest(context: Context) : WebView(context), INetContract.INetContr
 //            uiHandler.post(
 //                    Runnable {
             val doc = Jsoup.parse(html)
-            Log.e(TAG, "showHTML(): doc: |${doc.text().trim()}|")
-            val elements = doc.select("#online_movies > div > div")
-            Log.e(TAG, "showHTML(): elements: |$elements|")
-
-//                        entries.clear()
+            val elements = doc.getElementsByClass("top-news-list")
+            resultItems.clear()
             for (element in elements) {
-                val title = element.select("div.l-description.float-left > div:nth-child(1) > a").first().attr("title")
-                Log.e(TAG, "showHTML(): title: $title")
-                val imgUrl = element.select("div.l-image.float-left > a > img.lazy").first().attr("data-original")
-                Log.e(TAG, "showHTML(): imgUrl: $imgUrl")
-//                            entries.add(title + "\n" + imgUrl)
+                val newsItems = element.getElementsByClass("news-list-grid__item news-list-item")
+                newsItems?.let {
+                    for (newsItem in newsItems) {
+                        // Note: title grabs raw html (w/markup) -- defer parsing until human UI display
+                        val title = newsItem.getElementsByClass("title").html()
+                        val dateTime = newsItem.getElementsByClass("time").text().trim()
+                        val figureElement = newsItem.getElementsByClass("news-list-item__image")
+                        val linkElement = figureElement[0].getElementsByAttribute("href")[0]
+                        val storyRelUrl = linkElement.getElementsByTag("a")[0].attr("href").trim()
+                        val storyPhotoUrl = linkElement.getElementsByTag("img")[0].attr("src").trim()
+                        resultItems.add(WebEasyItem(title, dateTime, storyRelUrl, storyPhotoUrl))
+                    }
+                }
             }
-//                        adapter.notifyDataSetChanged()
+            Log.d(TAG, "showHTML(): resultItems: $resultItems")
         }
-//            )
-//        }
     }
 
     init {
