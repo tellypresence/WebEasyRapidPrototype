@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/WebEasyRapidPrototype.iml" filepath="$PROJECT_DIR$/WebEasyRapidPrototype.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/webg/webg.iml" filepath="$PROJECT_DIR$/webg/webg.iml" />
       <module fileurl="file://$PROJECT_DIR$/wenet/wenet.iml" filepath="$PROJECT_DIR$/wenet/wenet.iml" />
     </modules>
   </component>

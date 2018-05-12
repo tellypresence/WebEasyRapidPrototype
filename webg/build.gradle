@@ -1,0 +1,54 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion rootProject.compileSdkVer
+    defaultConfig {
+        minSdkVersion rootProject.minSdkVer
+        targetSdkVersion rootProject.targetSdkVer
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    // Ref: https://developer.android.com/studio/write/java8-support
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation project(":wenet")
+
+    implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation "com.android.support:appcompat-v7:${rootProject.supportLibraryVersion}"
+
+    // Android Architecture Components
+    // AAC Lifecycle
+    implementation "android.arch.lifecycle:extensions:${rootProject.aacLifecycleVer}"
+    implementation "android.arch.lifecycle:common-java8:${rootProject.aacLifecycleVer}"
+    implementation "android.arch.lifecycle:reactivestreams:${rootProject.aacLifecycleVer}"
+    // AAC WorkManager
+    implementation "android.arch.work:work-runtime-ktx:${rootProject.aacWorkMgrVer}"
+    implementation "android.arch.work:work-firebase:${rootProject.aacWorkMgrVer}"
+
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    // Android Architecture Components
+    // AAC WorkManager
+    androidTestImplementation "android.arch.work:work-testing:${rootProject.aacWorkMgrVer}"
+}
