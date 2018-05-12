@@ -33,6 +33,9 @@ dependencies {
     // AAC Navigation
     implementation "android.arch.navigation:navigation-fragment-ktx:${rootProject.aacNavigationVer}"
     implementation "android.arch.navigation:navigation-ui-ktx:${rootProject.aacNavigationVer}"
+    // AAC Paging
+    implementation "android.arch.paging:runtime:${rootProject.aacPagingVer}"
+    implementation "android.arch.paging:rxjava2:${rootProject.aacPagingAlphaVer}"
     // AAC WorkManager
     implementation "android.arch.work:work-runtime-ktx:${rootProject.aacWorkMgrVer}"
     implementation "android.arch.work:work-firebase:${rootProject.aacWorkMgrVer}"
