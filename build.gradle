@@ -60,6 +60,9 @@ ext {
     aacRoomAndroidXVer = '2.0.0-alpha1'
     aacWorkMgrVer = '1.0.0-alpha01'
 
+    // 3rd party libs/frameworks
+    jsoupVersion = '1.11.3' // https://jsoup.org/download
+
     // Testing
     junitVer = '4.12'
     testRunnerVer = '1.0.2'
