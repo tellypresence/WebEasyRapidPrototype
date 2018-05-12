@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'androidx.navigation.safeargs'
 
@@ -36,12 +37,21 @@ dependencies {
     implementation "android.arch.lifecycle:extensions:${rootProject.androidArchLifecycleExtVer}"
 
     // Android Architecture Components
+    // AAC Lifecycle
+    implementation "android.arch.lifecycle:extensions:${rootProject.aacLifecycleVer}"
+    implementation "android.arch.lifecycle:common-java8:${rootProject.aacLifecycleVer}"
+    implementation "android.arch.lifecycle:reactivestreams:${rootProject.aacLifecycleVer}"
     // AAC Navigation
     implementation "android.arch.navigation:navigation-fragment-ktx:${rootProject.aacNavigationVer}"
     implementation "android.arch.navigation:navigation-ui-ktx:${rootProject.aacNavigationVer}"
     // AAC Paging
     implementation "android.arch.paging:runtime:${rootProject.aacPagingVer}"
     implementation "android.arch.paging:rxjava2:${rootProject.aacPagingAlphaVer}"
+    // AAC Room
+    implementation "android.arch.persistence.room:runtime:${rootProject.aacRoomVer}"
+    kapt "android.arch.persistence.room:compiler:${rootProject.aacRoomVer}"
+    implementation "android.arch.persistence.room:rxjava2:${rootProject.aacRoomVer}"
+    implementation "android.arch.persistence.room:guava:${rootProject.aacRoomVer}"
     // AAC WorkManager
     implementation "android.arch.work:work-runtime-ktx:${rootProject.aacWorkMgrVer}"
     implementation "android.arch.work:work-firebase:${rootProject.aacWorkMgrVer}"
@@ -50,8 +60,12 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     // Android Architecture Components
+    // AAC Lifecycle
+    testImplementation "android.arch.core:core-testing:${rootProject.aacLifecycleVer}"
     // AAC Navigation
     androidTestImplementation "android.arch.navigation:navigation-testing-ktx:${rootProject.aacNavigationVer}"
     // AAC WorkManager
     androidTestImplementation "android.arch.work:work-testing:${rootProject.aacWorkMgrVer}"
+    // AAC Room
+    testImplementation "android.arch.persistence.room:testing:${rootProject.aacRoomVer}"
 }

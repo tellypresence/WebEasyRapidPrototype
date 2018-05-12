@@ -49,8 +49,12 @@ ext {
 
     // Android Architecture Components
     // Ref: https://developer.android.com/topic/libraries/architecture/adding-components
+    aacLifecycleVer = '1.1.1'
+    aacLifecycleAndroidXVer = '2.0.0-alpha1'
     aacPagingVer = '1.0.0'
     aacPagingAlphaVer = '1.0.0-alpha1'
     aacPagingAndroidXVer = '2.0.0-alpha1'
+    aacRoomVer = '1.1.0'
+    aacRoomAndroidXVer = '2.0.0-alpha1'
     aacWorkMgrVer = '1.0.0-alpha01'
 }
