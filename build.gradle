@@ -58,4 +58,9 @@ ext {
     aacRoomVer = '1.1.0'
     aacRoomAndroidXVer = '2.0.0-alpha1'
     aacWorkMgrVer = '1.0.0-alpha01'
+
+    // Testing
+    junitVer = '4.12'
+    testRunnerVer = '1.0.2'
+    espressoVer = '3.0.2'
 }
