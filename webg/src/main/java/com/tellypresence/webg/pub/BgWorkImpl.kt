@@ -1,12 +1,15 @@
 package com.tellypresence.webg.pub
 
-import android.content.Context
-import com.tellypresence.wenet.webview.pub.NetImpl
+import android.util.Log
+import com.tellypresence.webg.workmanager.BgImplWorkMgr
 
 class BgWorkImpl : IBgWork {
 
-    override fun scrapeWebsite(context: Context) {
-        val netImpl = NetImpl()
-        netImpl.loadWebpage(context)
+    private val TAG = BgWorkImpl::class.java.simpleName
+
+    override fun scrapeWebsite() {
+        Log.d(TAG, "scrapeWebsite()")
+        val bgImplWorkMgr : IBgWork = BgImplWorkMgr()
+        bgImplWorkMgr.scrapeWebsite()
     }
 }
