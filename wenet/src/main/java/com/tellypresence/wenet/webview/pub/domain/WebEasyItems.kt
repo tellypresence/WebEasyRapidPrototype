@@ -4,28 +4,20 @@ import com.squareup.moshi.FromJson
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.ToJson
 
-/**
- * Representation for news item from NHK "Web Easy" website
- */
-data class WebEasyItem(
-        // News headline, typ. containing kanji/furigana html markup tags
-        val titleRaw: String,
-        // Date/time of news story (Japanese format)
-        val dateStampRaw: String,
-        val storyRelUrl: String,
-        val storyPhotoUrl: String
+data class WebEasyItems(
+        val items: MutableList<WebEasyItem> = mutableListOf()
 ) {
     companion object {
         var moshi = Moshi.Builder().build()
-        var jsonAdapter = moshi.adapter(WebEasyItem::class.java)
+        var jsonAdapter = moshi.adapter(WebEasyItems::class.java)
 
         @FromJson
-        fun fromJson(jsonStr: String): WebEasyItem? {
+        fun fromJson(jsonStr: String): WebEasyItems? {
             return jsonAdapter.fromJson(jsonStr)
         }
 
         @ToJson
-        fun toJson(objReprKt: WebEasyItem): String {
+        fun toJson(objReprKt: WebEasyItems): String {
             val jsonStr = jsonAdapter.toJson(objReprKt)
             return jsonStr
         }

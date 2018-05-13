@@ -12,6 +12,7 @@ import com.tellypresence.infra.application.WeBaseApp
 import com.tellypresence.wenet.R
 import com.tellypresence.wenet.webview.pub.INetContract
 import com.tellypresence.wenet.webview.pub.domain.WebEasyItem
+import com.tellypresence.wenet.webview.pub.domain.WebEasyItems
 import org.jsoup.Jsoup
 
 /**
@@ -30,7 +31,7 @@ class WeWebViewTest(context: Context) : WebView(context), INetContract.INetContr
 
     private val TAG = WeWebViewTest::class.java.simpleName
 
-    private val resultItems = mutableListOf<WebEasyItem>()
+    private val resultItems = WebEasyItems()
 
     override fun loadWebpage() {
         Log.e(TAG, "loadWebpage()")
@@ -43,9 +44,10 @@ class WeWebViewTest(context: Context) : WebView(context), INetContract.INetContr
 
 //            uiHandler.post(
 //                    Runnable {
+            Log.e(TAG, "showHTML(): intro")
             val doc = Jsoup.parse(html)
             val elements = doc.getElementsByClass("top-news-list")
-            resultItems.clear()
+            resultItems.items.clear()
             for (element in elements) {
                 val newsItems = element.getElementsByClass("news-list-grid__item news-list-item")
                 newsItems?.let {
@@ -57,11 +59,11 @@ class WeWebViewTest(context: Context) : WebView(context), INetContract.INetContr
                         val linkElement = figureElement[0].getElementsByAttribute("href")[0]
                         val storyRelUrl = linkElement.getElementsByTag("a")[0].attr("href").trim()
                         val storyPhotoUrl = linkElement.getElementsByTag("img")[0].attr("src").trim()
-                        resultItems.add(WebEasyItem(title, dateTime, storyRelUrl, storyPhotoUrl))
+                        resultItems.items.add(WebEasyItem(title, dateTime, storyRelUrl, storyPhotoUrl))
                     }
                 }
             }
-            Log.d(TAG, "showHTML(): resultItems: $resultItems")
+            Log.d(TAG, "showHTML(): resultItems: ${resultItems.toJson()}")
         }
     }
 
